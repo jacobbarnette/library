@@ -1,0 +1,107 @@
+:root {
+    --red: #ff3341;
+    --yellow: #ffe747;
+    --white: #ffffff;
+    --blue: #1f9eff;
+}
+
+#heading {
+    background-color: var(--blue);
+    color: var(--white);
+    text-align: center;
+    display: flex;
+}
+
+#headingText {
+    font-size: 4em;
+    margin-left: 5%;
+    margin-right: 75%;
+    margin-top: .25%;
+    margin-bottom: .25;
+}
+
+#signIn {
+    width: 6%;
+    height: 1%;
+    margin-top: 1.1%;
+    color: var(--white);
+    background-color: var(--blue);
+    border: none;
+    font-size: 1.5em;
+    transition-property: font-size;
+    transition-duration: .50s;
+}
+
+#signIn:hover {
+    font-size: 1.4em;
+}
+
+.content {
+    display: flex;
+}
+
+.card {
+    width: 18em;
+    margin-left: 7%;
+    margin-top: 4%;
+    height: 23em;
+    background-color: var(--blue);
+    border: none;
+    border-radius: 7%;
+}
+
+svg {
+    font-size: 15em;
+    margin-top: 8%;
+    color: var(--white)
+}
+.libraryStats {
+    width: 20%;
+    margin-left: 59%;
+    height: 100%;
+    font-size: 1.55em;
+    justify-content: center;
+}
+
+#libInfo {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.bookInfo {
+    line-height: 2em;
+}
+
+.numbers {
+    text-align: right;
+    margin-left: -100%;
+}
+
+.spacer {
+    margin-bottom: 42%;
+}
+
+.storageArea {
+  margin-bottom: 8%;
+}
+
+.storage{
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.storageButtons {
+    text-align: center;
+    margin-left: 5%;
+    height: 2em;
+    width: 40%;
+}
+
+.madeBy {
+    font-size: .65em;
+    text-align: center;
+}
