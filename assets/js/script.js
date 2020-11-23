@@ -1,18 +1,27 @@
-let myLib = []; 
-let card = document.getElementById('card');
+let myLib = [];
+let addBookBtn = document.getElementById('modalBtn');
 
-function book(title, author, pages, read) {
+function createBook(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
 
-book.prototype.info = function () {
-    console.log(`${this.title} by ${this.author}, ${pages}, ${read}`);
+createBook.prototype.info = function () {
+    console.log(`${this.title} by ${this.author}, ${this.pages}, ${this.read}`);
 }
 
-// card.addEventListener('mouseover', function(){
-//     console.log('hi');
-//     card.className = 'shadow p-3 mb-5 rounded';
-// });
+let book1 = new createBook('First Book', 'Jacob Barnette', '250 pages', 'read');
+let book2 = new createBook('Book Two', 'Jacob Barnette', '350 pages', 'read');  
+
+function addBook() { 
+    myLib.push();
+    for(let i = 0; i <= myLib.length; i++)
+        for(property in myLib[i]) {
+            console.log(this.property);
+        }           
+        
+    }
+     
+addBook()
