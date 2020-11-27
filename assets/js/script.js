@@ -1,27 +1,27 @@
 let myLib = [];
-let addBookBtn = document.getElementById('modalBtn');
 
-function createBook(title, author, pages, read) {
+function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
 
-createBook.prototype.info = function () {
-    console.log(`${this.title} by ${this.author}, ${this.pages}, ${this.read}`);
+function addBook(obj){
+    myLib.push(obj);
 }
 
-let book1 = new createBook('First Book', 'Jacob Barnette', '250 pages', 'read');
-let book2 = new createBook('Book Two', 'Jacob Barnette', '350 pages', 'read');  
-
-function addBook() { 
-    myLib.push();
-    for(let i = 0; i <= myLib.length; i++)
-        for(property in myLib[i]) {
-            console.log(this.property);
-        }           
-        
+function loopThroughProperties() {
+    for(let i = 0; i <= myLib.length; i++){
+        for(const property in myLib[i]){
+            console.log(myLib[i][property])
     }
-     
-addBook()
+}
+}
+
+let book1 = new Book('Book 1', 'Jacob Barnette', '987', 'true');
+let book2 = new Book('Book 2', 'Jacob Barnette', '231', 'true');
+
+addBook(book1);
+addBook(book2);
+loopThroughProperties();
