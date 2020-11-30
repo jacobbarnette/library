@@ -1,27 +1,29 @@
+let bookTitle = document.getElementById('title');
+let bookAuthor = document.getElementById('author')
+let bookPages = document.getElementById('pages');
+let hasRead = document.getElementById('hasRead');
+let addBookBtn = document.getElementById('addBookBtn');
+
+
 let myLib = [];
 
-function Book(title, author, pages, read){
+addBookBtn.addEventListener('click',function(){
+    bookTitle = title.value;
+    bookAuthor = author.value;
+    bookPages = pages.value;
+    hasRead = true;
+    let book = new Book(bookTitle, bookAuthor, bookPages, hasRead);
+    console.log(book);
+    myLib.push(book);
+    console.log(myLib);
+    
+});
+
+function Book(title, author, pages, hasRead){
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.hasRead = hasRead;
+ 
 }
 
-function addBook(obj){
-    myLib.push(obj);
-}
-
-function loopThroughProperties() {
-    for(let i = 0; i <= myLib.length; i++){
-        for(const property in myLib[i]){
-            console.log(myLib[i][property])
-    }
-}
-}
-
-let book1 = new Book('Book 1', 'Jacob Barnette', '987', 'true');
-let book2 = new Book('Book 2', 'Jacob Barnette', '231', 'true');
-
-addBook(book1);
-addBook(book2);
-loopThroughProperties();
