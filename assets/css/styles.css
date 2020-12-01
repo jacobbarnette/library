@@ -1,4 +1,4 @@
-w:root {
+:root {
     --white: #ffffff;
     --blue: #1f9eff;
 }
@@ -41,7 +41,6 @@ w:root {
 .content {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-   
     width: 75%;
 }
 
@@ -135,7 +134,7 @@ svg {
 }
 
 .spacer {
-    margin-bottom: 39%;
+    margin-bottom: 37%;
 }
 
 .storageArea {
@@ -167,7 +166,7 @@ svg {
 
 p:first-of-type {
     font-size: 50px;
-    padding-bottom: 20%;
+    padding-bottom: %;
 }
 
 p {
