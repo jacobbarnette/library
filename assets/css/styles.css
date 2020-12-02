@@ -166,10 +166,18 @@ svg {
 
 p:first-of-type {
     font-size: 50px;
-    padding-bottom: %;
+}
+
+p:last-of-type {
+    margin-bottom: 1%;
 }
 
 p {
     font-size: 22px;
     letter-spacing: 2px;
+}
+
+.bookCardBtn {
+    margin: 30px 17px;
+    margin-
 }
