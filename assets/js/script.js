@@ -16,10 +16,10 @@ addBookBtn.addEventListener('click',addBook);
 
 function renderBookCard() {
     if(i <= myLib.length -1 && i === 0) {
-        createCard(myLib[i]);
+        createCard(myLib[i], i);
         i++;
     } else if (i <= myLib.length) {
-        createCard(myLib[i]);
+        createCard(myLib[i], i);
         i++;
     }
     return i;
@@ -35,8 +35,9 @@ class Book{
 }
 
 //create book object, push into lib arr
-function addBook(e) {
-    e.preventDefault();
+function addBook(event) {
+    event.preventDefault();
+  
     newBook = new Book(title, author, pages, hasRead);
     myLib.push(newBook);
     renderBookCard();
@@ -52,33 +53,36 @@ function createCard(item, i){
     const readBtn = document.createElement('button');
     const btnContainer = document.createElement('div');
 
-    makeCard.classList = 'bg-primary card card-body bookCard';
-    makeCard.setAttribute('id', myLib.indexOf(myLib[i]));
-    content.appendChild(makeCard); 
-
-    titleDiv.textContent = item.bookTitle;
-    makeCard.appendChild(titleDiv);
-
-    authorDiv.textContent = item.bookAuthor;
-    makeCard.appendChild(authorDiv);
-
-    pageDiv.textContent = item.bookPages;
-    makeCard.appendChild(pageDiv);
-
-    removeBtn.classList = 'btn btn-danger bookCardBtn removeBtn';
-    removeBtn.textContent = 'Delete';
-    removeBtn.addEventListener('click', function(){
-        if(myLib.indexOf(myLib[i] === makeCard.getAttribute('id'))); {
+    if(item.bookTitle === '') {
+        alert('Sorry, no books are written without titles');
+    } else {
+        makeCard.classList = 'bg-primary card card-body bookCard';
+        makeCard.setAttribute('id', myLib.indexOf(myLib[i]));
+        content.appendChild(makeCard); 
+    
+        titleDiv.textContent = item.bookTitle;
+        makeCard.appendChild(titleDiv);
+    
+        authorDiv.textContent = item.bookAuthor;
+        makeCard.appendChild(authorDiv);
+    
+        pageDiv.textContent = item.bookPages;
+        makeCard.appendChild(pageDiv);
+    
+        removeBtn.classList = 'btn btn-danger bookCardBtn removeBtn';
+        removeBtn.textContent = 'Delete';
+        removeBtn.addEventListener('click', function(){
             myLib.splice(myLib.indexOf(myLib[i]), 1);
-            renderBookCard();
-        }
-    })
-    btnContainer.appendChild(removeBtn);
+            content.removeChild(makeCard);
+        });
+        btnContainer.appendChild(removeBtn);
+    
+        readBtn.classList = 'btn btn-primary bookCardBtn hasRead';
+        readBtn.textContent = 'Completed';
+        btnContainer.appendChild(readBtn);
+    
+        makeCard.appendChild(btnContainer)
 
-    readBtn.classList = 'btn btn-primary bookCardBtn hasRead';
-    readBtn.textContent = 'Completed';
-    btnContainer.appendChild(readBtn);
-
-    makeCard.appendChild(btnContainer)
-  
+    }
+   
 }
