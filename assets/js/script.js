@@ -1,21 +1,115 @@
-let bookTitle = document.getElementById('title');
-let bookAuthor = document.getElementById('author')
+let myLib = [];
+let sum = 0;
+let i = 0;
+let title = document.getElementById('title');
+let author = document.getElementById('author');
 let bookPages = document.getElementById('pages');
-let hasRead = document.getElementById('hasRead');
+let pagesRead = document.getElementById('pagesRead');
 let addBookBtn = document.getElementById('addBookBtn');
 let content = document.getElementById('content');
-let card = document.getElementById('card');
-let i = 0;
-let x = 0;
-let newBook;
-let counter = 0;
-let myLib = [];
-let makecard;
+let completedBooks = 0;
 
-addBookBtn.addEventListener('click',addBook);
+addBookBtn.addEventListener('click', createBook);
 
-function renderBookCard() {
-    if(i <= myLib.length -1 && i === 0) {
+//create book obj push into myLib arr
+function createBook(e){
+    e.preventDefault()
+    let newBook;
+    newBook = new Book(title, author, bookPages, pagesRead);
+    myLib.push(newBook);
+    //prevent duplicating cards throughout array
+    renderBookCards(myLib);
+}
+
+function Book(title, author, bookPages, pagesRead) {
+    this.title =  title.value,
+    this.author = author.value,
+    this.bookPages = bookPages.value,
+    this.pagesRead = pagesRead.value
+}
+
+//create dom elements for books
+function createCard(newBook){
+    let booksOwned = document.getElementById('booksOwned');
+    let totalPages = document.getElementById('totalPages');
+    let totalBooksRead = document.getElementById('booksRead');
+    const bookCard = document.createElement('div');
+    const bookTitleP = document.createElement('p');
+    const bookAuthorP =  document.createElement('p');
+    const bookpages =  document.createElement('p');
+    const bookpagesRead = document.createElement('p');
+    const removeBtn = document.createElement('button');
+    const readBookBtn = document.createElement('button');
+    const btnContainer = document.createElement('div');
+
+    bookCard.setAttribute('id', myLib.indexOf(myLib[i]));
+    bookTitleP.textContent = newBook.title;
+    bookCard.appendChild(bookTitleP);
+
+    bookAuthorP.textContent = newBook.author;
+    bookCard.appendChild(bookAuthorP);
+
+    bookpages.textContent = newBook.bookPages;
+    bookCard.appendChild(bookpages);
+
+    bookpagesRead.textContent = newBook.pagesRead;
+    bookCard.appendChild(bookpagesRead);
+
+    removeBtn.classList = 'btn btn-danger bookCardBtn removeBtn';
+    removeBtn.textContent = 'Delete';
+    removeBtn.addEventListener('click', function(){
+      
+       sum -= (Number(bookpagesRead.textContent))
+       console.log(sum);
+       totalPages.textContent = sum;
+        
+        myLib.splice(myLib.indexOf(myLib[i]), 1);
+        let booksOwned = document.getElementById('booksOwned');
+        if(myLib.length === 0 ){
+            booksOwned.textContent = 0;
+            totalBooksRead.textContent = myLib.length;
+        } else {
+            booksOwned.textContent = myLib.length;
+            totalBooksRead.textContent = completedBooks;
+        }
+          
+        content.removeChild(bookCard);
+    })
+    readBookBtn.classList = 'btn btn-primary bookCardBtn hasRead'; 
+    readBookBtn.textContent = 'Completed';
+    readBookBtn.addEventListener('click', function(){
+        if(completedBooks > myLib.length) {
+            totalBooksRead.textContent = myLib.length;
+        } else if(completedBooks < myLib.length){
+            completedBooks++;
+            totalBooksRead.textContent = completedBooks;
+        }
+        
+    })
+    btnContainer.appendChild(removeBtn);
+    btnContainer.appendChild(readBookBtn);
+    bookCard.appendChild(btnContainer);
+   
+
+    bookCard.classList = 'bg-primary card card-body bookCard';
+    content.appendChild(bookCard);
+    
+    // lib stats
+    
+    booksOwned.textContent = myLib.length;
+            sum += Number(myLib[i].pagesRead);
+            console.log(sum);
+            totalPages.textContent = sum;
+    totalBooksRead.textContent = completedBooks;
+   
+    }
+    
+
+
+
+
+function renderBookCards() {
+    if(i <= myLib.length - 1 && i === 0) {
         createCard(myLib[i], i);
         i++;
     } else if (i <= myLib.length) {
@@ -23,66 +117,5 @@ function renderBookCard() {
         i++;
     }
     return i;
-    }
-
-class Book{
-    constructor(title, author, pages, hasRead) {
-        this.bookTitle = title.value;
-        this.bookAuthor = author.value;
-        this.bookPages = pages.value;
-        this.hasRead = true;
-    }
 }
 
-//create book object, push into lib arr
-function addBook(event) {
-    event.preventDefault();
-  
-    newBook = new Book(title, author, pages, hasRead);
-    myLib.push(newBook);
-    renderBookCard();
-}
-
-//create dom elements from array
-function createCard(item, i){
-    const makeCard = document.createElement('div');
-    const titleDiv = document.createElement('p');
-    const authorDiv = document.createElement('p');
-    const pageDiv = document.createElement('p');
-    const removeBtn = document.createElement('button')
-    const readBtn = document.createElement('button');
-    const btnContainer = document.createElement('div');
-
-    if(item.bookTitle === '') {
-        alert('Sorry, no books are written without titles');
-    } else {
-        makeCard.classList = 'bg-primary card card-body bookCard';
-        makeCard.setAttribute('id', myLib.indexOf(myLib[i]));
-        content.appendChild(makeCard); 
-    
-        titleDiv.textContent = item.bookTitle;
-        makeCard.appendChild(titleDiv);
-    
-        authorDiv.textContent = item.bookAuthor;
-        makeCard.appendChild(authorDiv);
-    
-        pageDiv.textContent = item.bookPages;
-        makeCard.appendChild(pageDiv);
-    
-        removeBtn.classList = 'btn btn-danger bookCardBtn removeBtn';
-        removeBtn.textContent = 'Delete';
-        removeBtn.addEventListener('click', function(){
-            myLib.splice(myLib.indexOf(myLib[i]), 1);
-            content.removeChild(makeCard);
-        });
-        btnContainer.appendChild(removeBtn);
-    
-        readBtn.classList = 'btn btn-primary bookCardBtn hasRead';
-        readBtn.textContent = 'Completed';
-        btnContainer.appendChild(readBtn);
-    
-        makeCard.appendChild(btnContainer)
-
-    }
-   
-}
