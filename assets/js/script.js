@@ -21,11 +21,14 @@ function createBook(e){
     renderBookCards(myLib);
 }
 
-function Book(title, author, bookPages, pagesRead) {
-    this.title =  title.value,
-    this.author = author.value,
-    this.bookPages = bookPages.value,
-    this.pagesRead = pagesRead.value
+class Book {
+    constructor(title, author, bookPages, pagesRead) {
+        this.title =  title.value,
+        this.author = author.value,
+        this.bookPages = bookPages.value,
+        this.pagesRead = pagesRead.value
+    }
+    
 }
 
 //create dom elements for books
